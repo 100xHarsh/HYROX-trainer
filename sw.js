@@ -1,4 +1,4 @@
-const CACHE = 'hyrox-v2';
+const CACHE = 'hyrox-v3';
 const ASSETS = ['/index.html', '/sw.js', '/manifest.json'];
 
 self.addEventListener('install', e => {

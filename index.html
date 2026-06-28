@@ -12,6 +12,9 @@
 <link rel="apple-touch-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAIAAADdvvtQAAAFAUlEQVR4nO3UQa4bVwxEUY//xBMvwhvJPrz97CIGDAiGk1iyyPeKVbzAnXa3SB7o08fHZ6K3+yT/BWQdgKgUgKgUgKgUgKgUgKgUgKgUgKgUgKgUgKgUgKgUgKgUgKgUgKgUgKgUgJ705ctX+W+Y3GpA33F0JZ9F1S5AjWLw9KN8QNfQ7MQUC0juZomkNEByJdskhQCSm1gryR6QHMFyRsaA5IeHkSsg+bFh5ApIfmAYuQKSHxVGroDkh4SRMSD5/SYkv4IlIPnZpiW/iBMg+bVmJr+LASD5keYnv9FcQPLbuCS/1ERA8qt4Jb/XLEDyezgmv9oUQPJL+Ca/nRiQ/AAZLQUk33tS6wDJN57XIkDyXae2ApB8y9mFA5Lvd0MAIgChZ4ehe4DkO91WFCD5NncWAki+x83ZA5JvkNYB+vuvb0/TvvDF18rp2AN6b+AYQBsMHQT09rRJgOINAeg4oCGGzABVRs0DFGzoCKDinJGAUg0B6B6gCYYMANWHDAaUZwhAtwHJDY0G1DJhPKAkQwDSANIaGgqoazwXQBgCUMMtTQ2NA9Q4mxeg5YYA1HNFR0ODAPUO5ghorSEAdd7PztAIQO1T+QJaaAhA/ZfzMgSgcYC8DIkBnRgpANAeQwA6eDAXQwAaCsjFkAyQcOkugOINAejGneYbAtBoQPMNCQBpd20HSG7o6RsANB2Q0NArjwPIAJDE0IvPAsgD0GVDrz94FZB8v9aArhn606cAZAPogqE3HgGQE6Cjht6bEUBmgA4ZentGAPkBajdUmfESoAkLTQLUaKg+I4AsAbUYapkRQK6A6oYAdGmPYwGdnh1A+YCOjg+gFYDObQBAWwAdWgKAFgE6sQcA7QLUvgoArQPUuw0AbQTUuBAALQXUtZMRgFyWFQaovpbXP8Q/UCCgnH8gAJnqAdBSQJdnBFAUoPszAigHkGRGAIUAUs0IoARAwhkBZA9IOyOAvAHJZ9wCSPtCRz0ACgdUxwGgvYC6/lo8AJ02tA1Ql56nb2vXAyA9oF49v38ngNIAndDzmzcDKArQOT3/934A5QA6rec/vzII0FFD8YDu6Pn3t9r1AEgA6KaeX74IIHtA9/X8/F0AeQNS6Xl8fRagc4YiAWn1PO1tAwC6caHhegA0GtB8PTJAhwwlAcrWA6Czp7LQA6ChgFz0iAGdMBQAaIkeAB25mZEeAI0D5KVnBKB2Q76AtukBUOfx7PQMAtRryBHQTj0A6jmho55xgBoNeQHarAdA1UOa6hkKqMuQCyD0AEgGSKhnNKAWQ/GAYvQASABIq8cAUN1QMKAwPQC6CkiuxwZQ0VAkIDmdE3oOAqoYygMkp3NID4BuAJLTcQX0tqEkQHI3R/UcB/SeoRhAcjen9QwFRL15A8JQsJ5LgDCUquceIAxF6rkKCEN5em4DwlCYHgBllgwIQ0l6NIAwFKNHBghDGXqUgDAUoEcMCEPuevSAYORLZxAgDJnqGQQIQ456ZgHCkJ2ecYAw5KVnIiAYudAZDQhDFnpGA4LRcDoegDAk3789oLWM5DuPArSKkXzPsYDiGcl3uwJQJCP5PtcBimEk3+FqQB/OjOR7qxcC6JHcxBI3j9IAPZIryXbzKBbQI9wcLR/Qz4GmvV2Afgkx9VYDeqXNOF4JQFQKQFQKQFQKQFQKQFQKQFQKQFQKQFQKQFQKQFQKQFQKQFQKQFQKQFQKQFTqHw1BWlaXJ+8/AAAAAElFTkSuQmCC">
 
 <link href="https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@300;400;500;600;700;800;900&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
 <style>
 /* ── Type scale ──
    Display  : Saira Condensed 900  — 48/36/28px  — headlines, countdown numbers
@@ -370,6 +373,40 @@ body {
   border: 1px solid var(--ink6);
   color: var(--ink5);
 }
+/* ── CTA hierarchy ── */
+.btn-secondary {
+  display: block; width: calc(100% - 32px);
+  margin: 6px 16px; padding: 14px;
+  background: var(--bg2); border: none;
+  color: var(--ink2);
+  font-family: var(--display); font-weight: 800;
+  font-size: 14px; letter-spacing: 2px; text-transform: uppercase;
+  cursor: pointer; transition: opacity 0.15s, transform 0.1s;
+}
+.btn-tertiary {
+  display: block; width: calc(100% - 32px);
+  margin: 6px 16px; padding: 14px;
+  background: transparent; border: 1px solid var(--ink3);
+  color: var(--ink3);
+  font-family: var(--display); font-weight: 700;
+  font-size: 14px; letter-spacing: 2px; text-transform: uppercase;
+  cursor: pointer; transition: opacity 0.15s, transform 0.1s;
+}
+.btn-bare {
+  background: transparent; border: none; padding: 8px 0;
+  color: var(--ink3); font-family: var(--display);
+  font-weight: 700; font-size: 13px; letter-spacing: 1px;
+  text-transform: uppercase; cursor: pointer;
+}
+.btn-danger {
+  background: transparent; border: none; padding: 14px;
+  width: calc(100% - 32px); margin: 6px 16px;
+  color: #c0392b; font-family: var(--display);
+  font-weight: 700; font-size: 14px; letter-spacing: 2px;
+  text-transform: uppercase; cursor: pointer;
+  border: 1px solid rgba(192,57,43,0.2);
+}
+.btn-danger:hover { background: rgba(192,57,43,0.06); }
 
 /* ── Stats grid ── */
 .stats-grid {
@@ -756,166 +793,329 @@ body {
   white-space: nowrap;
 }
 #toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+/* ── Onboarding & Settings shared ── */
+.ob-group { margin-bottom: 22px; }
+.ob-label {
+  font-family: var(--body);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--ink4);
+  margin-bottom: 8px;
+}
+.ob-input {
+  width: 100%;
+  padding: 13px 14px;
+  border: 1px solid var(--border);
+  background: var(--bg1);
+  font-family: var(--body);
+  font-size: 15px;
+  color: var(--ink);
+  outline: none;
+  -webkit-appearance: none;
+  border-radius: 0;
+}
+.ob-input:focus { border-color: var(--ink); background: var(--bg); }
+.ob-pill-row { display: flex; flex-wrap: wrap; gap: 6px; }
+.ob-pill {
+  padding: 7px 14px;
+  border: 1px solid var(--border);
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: var(--ink4);
+  cursor: pointer;
+  transition: all 0.1s;
+  user-select: none;
+}
+.ob-pill.active { border-color: var(--ink); color: var(--ink); background: var(--bg1); }
 </style>
-</head>
-<body>
 
-<div class="status-bar"></div>
 
-<!-- Top header always visible -->
-<div class="top-header">
-  <div>
-    <div class="top-logo">HYROX</div>
-    <div class="top-subtitle">Bangkok 2027 · Open Men</div>
-  </div>
-  <div class="top-right">
-    <div class="streak-badge" id="header-streak">🔥 0</div>
+<!-- ══ CONFIRM MODAL ══ -->
+<div id="confirm-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.4);z-index:2000;align-items:flex-end;justify-content:center">
+  <div style="background:var(--bg);width:100%;max-width:430px;padding:24px 24px 32px;border-top:1px solid var(--border)">
+    <div id="confirm-title" style="font-family:var(--display);font-weight:900;font-size:22px;letter-spacing:1px;text-transform:uppercase;margin-bottom:6px"></div>
+    <div id="confirm-desc" style="font-family:var(--body);font-size:13px;color:var(--ink4);margin-bottom:24px;line-height:1.5"></div>
+    <button id="confirm-ok" style="display:block;width:100%;padding:16px;border:none;font-family:var(--display);font-weight:900;font-size:15px;letter-spacing:3px;text-transform:uppercase;cursor:pointer;margin-bottom:10px"></button>
+    <button onclick="closeConfirm()" style="display:block;width:100%;padding:14px;border:1px solid var(--border);background:transparent;color:var(--ink4);font-family:var(--display);font-weight:700;font-size:14px;letter-spacing:2px;text-transform:uppercase;cursor:pointer">Cancel</button>
   </div>
 </div>
 
-<!-- Scrollable app -->
+<!-- ══ LOGIN SCREEN ══ -->
+<div id="login-screen" style="display:none;position:fixed;inset:0;background:var(--bg);z-index:1000;flex-direction:column;align-items:center;justify-content:center;padding:40px 32px;text-align:center">
+  <div style="font-family:var(--display);font-weight:900;font-size:52px;letter-spacing:6px;text-transform:uppercase;line-height:1;margin-bottom:8px">HYROX</div>
+  <div style="font-family:var(--body);font-size:12px;color:var(--ink4);letter-spacing:1px;margin-bottom:48px">Bangkok 2027 · Open Men Trainer</div>
+  <div style="width:64px;height:2px;background:var(--ink);margin:0 auto 48px"></div>
+  <div style="font-family:var(--display);font-weight:800;font-size:18px;letter-spacing:1px;text-transform:uppercase;margin-bottom:8px">Sign in to start</div>
+  <div style="font-family:var(--body);font-size:13px;color:var(--ink4);margin-bottom:32px;line-height:1.5">Your plan, progress and streak<br>sync across all your devices</div>
+  <button id="btn-google-login" style="display:flex;align-items:center;justify-content:center;gap:12px;width:100%;max-width:320px;padding:16px 20px;border:1px solid var(--border);background:var(--bg);cursor:pointer;font-family:var(--display);font-weight:800;font-size:14px;letter-spacing:1.5px;text-transform:uppercase;color:var(--ink);transition:background 0.15s">
+    <svg width="18" height="18" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.31-8.16 2.31-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
+    Continue with Google
+  </button>
+  <div style="margin-top:20px;font-family:var(--body);font-size:11px;color:var(--ink5)">Free · No credit card · Data stays yours</div>
+</div>
+<div id="onboarding" style="display:none;position:fixed;inset:0;background:var(--bg);z-index:999;overflow-y:auto;padding-bottom:40px">
+  <div style="padding:40px 24px 0">
+    <div style="font-family:var(--display);font-weight:900;font-size:42px;letter-spacing:4px;text-transform:uppercase;line-height:1">HYROX</div>
+    <div style="font-family:var(--body);font-size:13px;color:var(--ink4);margin-top:6px">Personalise your training plan</div>
+  </div>
+
+  <div style="padding:28px 24px 0">
+
+    <div class="ob-group">
+      <div class="ob-label">Your name</div>
+      <input class="ob-input" id="ob-name" type="text" placeholder="e.g. Harsh">
+    </div>
+
+    <div class="ob-group">
+      <div class="ob-label">Race date</div>
+      <input class="ob-input" id="ob-date" type="date" value="2027-03-20">
+    </div>
+
+    <div class="ob-group">
+      <div class="ob-label">Target finish time</div>
+      <div class="ob-pill-row" id="ob-target">
+        <div class="ob-pill active" data-val="sub130">Sub 1:30</div>
+        <div class="ob-pill" data-val="sub145">Sub 1:45</div>
+        <div class="ob-pill" data-val="sub200">Sub 2:00</div>
+        <div class="ob-pill" data-val="finish">Just finish</div>
+      </div>
+    </div>
+
+    <div class="ob-group">
+      <div class="ob-label">Training days per week</div>
+      <div class="ob-pill-row" id="ob-days">
+        <div class="ob-pill" data-val="3">3 days</div>
+        <div class="ob-pill active" data-val="4">4 days</div>
+        <div class="ob-pill" data-val="5">5 days</div>
+      </div>
+    </div>
+
+    <div class="ob-group">
+      <div class="ob-label">Gym access</div>
+      <div class="ob-pill-row" id="ob-gym">
+        <div class="ob-pill" data-val="full">Full gym</div>
+        <div class="ob-pill active" data-val="commercial">Commercial</div>
+        <div class="ob-pill" data-val="home">Home only</div>
+      </div>
+    </div>
+
+    <div class="ob-group">
+      <div class="ob-label">Running level</div>
+      <div class="ob-pill-row" id="ob-run">
+        <div class="ob-pill" data-val="beginner">Beginner</div>
+        <div class="ob-pill active" data-val="decent">Decent</div>
+        <div class="ob-pill" data-val="strong">Strong</div>
+      </div>
+    </div>
+
+    <div class="ob-group">
+      <div class="ob-label">Weight (kg)</div>
+      <input class="ob-input" id="ob-weight" type="number" placeholder="e.g. 84" min="40" max="200">
+    </div>
+
+    <div class="ob-group">
+      <div class="ob-label">Diet preference</div>
+      <div class="ob-pill-row" id="ob-diet">
+        <div class="ob-pill active" data-val="nonveg">Non-veg (eggs + chicken)</div>
+        <div class="ob-pill" data-val="veg">Vegetarian</div>
+        <div class="ob-pill" data-val="vegan">Vegan</div>
+      </div>
+    </div>
+
+    <button onclick="saveOnboarding()" style="width:100%;margin-top:32px;padding:18px;background:var(--ink);color:var(--bg);border:none;font-family:var(--display);font-weight:900;font-size:16px;letter-spacing:3px;text-transform:uppercase;cursor:pointer">START MY PLAN →</button>
+
+  </div>
+</div>
+
+<!-- ══ SETTINGS PANEL ══ -->
+<div id="settings-panel" style="display:none;position:fixed;inset:0;background:var(--bg);z-index:998;overflow-y:auto;padding-bottom:40px">
+  <div style="display:flex;align-items:center;justify-content:space-between;padding:16px 20px;border-bottom:1px solid var(--border);background:var(--bg);position:sticky;top:0;z-index:1">
+    <div style="font-family:var(--display);font-weight:900;font-size:22px;letter-spacing:2px;text-transform:uppercase">Settings</div>
+    <button onclick="closeSettings()" style="border:1px solid var(--border);background:transparent;width:36px;height:36px;cursor:pointer;font-size:20px;display:flex;align-items:center;justify-content:center;color:var(--ink)">✕</button>
+  </div>
+
+  <div style="padding:20px 20px 0">
+
+    <div class="ob-group">
+      <div class="ob-label">Your name</div>
+      <input class="ob-input" id="cfg-name" type="text">
+    </div>
+
+    <div class="ob-group">
+      <div class="ob-label">Race date</div>
+      <input class="ob-input" id="cfg-date" type="date">
+    </div>
+
+    <div class="ob-group">
+      <div class="ob-label">Target finish time</div>
+      <div class="ob-pill-row" id="cfg-target">
+        <div class="ob-pill" data-val="sub130">Sub 1:30</div>
+        <div class="ob-pill" data-val="sub145">Sub 1:45</div>
+        <div class="ob-pill" data-val="sub200">Sub 2:00</div>
+        <div class="ob-pill" data-val="finish">Just finish</div>
+      </div>
+    </div>
+
+    <div class="ob-group">
+      <div class="ob-label">Training days per week</div>
+      <div class="ob-pill-row" id="cfg-days">
+        <div class="ob-pill" data-val="3">3 days</div>
+        <div class="ob-pill" data-val="4">4 days</div>
+        <div class="ob-pill" data-val="5">5 days</div>
+      </div>
+    </div>
+
+    <div class="ob-group">
+      <div class="ob-label">Gym access</div>
+      <div class="ob-pill-row" id="cfg-gym">
+        <div class="ob-pill" data-val="full">Full gym</div>
+        <div class="ob-pill" data-val="commercial">Commercial</div>
+        <div class="ob-pill" data-val="home">Home only</div>
+      </div>
+    </div>
+
+    <div class="ob-group">
+      <div class="ob-label">Running level</div>
+      <div class="ob-pill-row" id="cfg-run">
+        <div class="ob-pill" data-val="beginner">Beginner</div>
+        <div class="ob-pill" data-val="decent">Decent</div>
+        <div class="ob-pill" data-val="strong">Strong</div>
+      </div>
+    </div>
+
+    <div class="ob-group">
+      <div class="ob-label">Weight (kg)</div>
+      <input class="ob-input" id="cfg-weight" type="number" min="40" max="200">
+    </div>
+
+    <div class="ob-group">
+      <div class="ob-label">Diet preference</div>
+      <div class="ob-pill-row" id="cfg-diet">
+        <div class="ob-pill" data-val="nonveg">Non-veg</div>
+        <div class="ob-pill" data-val="veg">Vegetarian</div>
+        <div class="ob-pill" data-val="vegan">Vegan</div>
+      </div>
+    </div>
+
+    <button onclick="saveSettings()" style="width:100%;margin-top:28px;padding:18px;background:var(--ink);color:var(--bg);border:none;font-family:var(--display);font-weight:900;font-size:16px;letter-spacing:3px;text-transform:uppercase;cursor:pointer">SAVE CHANGES</button>
+
+    <div style="margin-top:32px;border-top:1px solid var(--border);padding-top:20px">
+      <div style="font-family:var(--body);font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--ink4);margin-bottom:12px">Danger zone</div>
+      <button onclick="resetData()" style="width:100%;padding:14px;background:transparent;border:1px solid rgba(192,57,43,0.25);color:#c0392b;font-family:var(--display);font-weight:700;font-size:14px;letter-spacing:2px;text-transform:uppercase;cursor:pointer">Reset all progress data</button>
+    </div>
+
+  </div>
+</div>
+
+<div class="status-bar"></div>
+
+<div class="top-header">
+  <div>
+    <div class="top-logo">HYROX</div>
+    <div class="top-subtitle" id="header-subtitle">Bangkok 2027 · Open Men</div>
+  </div>
+  <div style="display:flex;align-items:center;gap:8px">
+    <div class="streak-badge" id="header-streak" style="display:none"><svg width="13" height="13" viewBox="0 0 24 24" fill="var(--ink)" stroke="none" style="display:inline-block;vertical-align:middle;margin-right:3px"><path d="M12 2C9 7 6 8.5 6 13a6 6 0 0012 0c0-3-1.5-5-3-6.5C14.5 8 14 10 12 10c0-3-1-6-0-8zM9 17c0-2 1.5-3 3-4 1.5 1 3 2 3 4a3 3 0 01-6 0z"/></svg><span id="streak-num">0</span></div>
+    <button id="btn-signout" style="display:none;align-items:center;gap:4px;border:none;background:transparent;padding:5px 8px;cursor:pointer;font-family:var(--display);font-weight:700;font-size:11px;letter-spacing:1px;text-transform:uppercase;color:#c0392b">Sign out</button>
+    <img id="user-avatar" src="" style="display:none;width:32px;height:32px;border-radius:50%;border:1px solid var(--border);object-fit:cover">
+    <button onclick="openSettings()" style="width:36px;height:36px;border:1px solid var(--border);background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0" aria-label="Settings">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-2 2 2 2 0 01-2-2v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83 0 2 2 0 010-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 01-2-2 2 2 0 012-2h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 010-2.83 2 2 0 012.83 0l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 012-2 2 2 0 012 2v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 0 2 2 0 010 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 012 2 2 2 0 01-2 2h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+    </button>
+  </div>
+</div>
+
 <div id="app">
 
-  <!-- ═══════════ TODAY ═══════════ -->
   <div id="screen-today" class="screen active">
-
     <div class="countdown-block">
       <div class="cd-unit"><div class="cd-num" id="cd-w">—</div><div class="cd-lbl">Weeks</div></div>
       <div class="cd-unit"><div class="cd-num" id="cd-d">—</div><div class="cd-lbl">Days</div></div>
       <div class="cd-unit"><div class="cd-num" id="cd-p">—</div><div class="cd-lbl">Phase wk</div></div>
       <div class="cd-unit"><div class="cd-num" id="cd-tot">—</div><div class="cd-lbl">Total wk</div></div>
     </div>
-
     <div class="phase-row" id="phase-pills"></div>
-
     <div class="sec-hdr"><span class="sec-hdr-title">This week</span><div class="sec-hdr-line"></div></div>
-
     <div class="week-strip" id="week-strip"></div>
-
     <div class="sec-hdr" style="padding-top:14px"><span class="sec-hdr-title">Today</span><div class="sec-hdr-line"></div></div>
-
     <div id="today-card"></div>
-
     <div class="sec-hdr"><span class="sec-hdr-title">This week</span><div class="sec-hdr-line"></div></div>
-
     <div class="stats-grid">
       <div class="stat-box"><div class="stat-n" id="st-streak">0</div><div class="stat-l">Streak</div></div>
       <div class="stat-box"><div class="stat-n" id="st-week">0</div><div class="stat-l">Done / wk</div></div>
       <div class="stat-box"><div class="stat-n" id="st-total">0</div><div class="stat-l">All time</div></div>
     </div>
-
   </div>
 
-  <!-- ═══════════ PLAN ═══════════ -->
   <div id="screen-plan" class="screen">
-
     <div class="plan-week-nav">
-      <button class="plan-nav-btn" onclick="changePW(-1)">‹</button>
-      <div class="plan-week-info">
+      <button class="plan-nav-btn" onclick="changePW(-1)" aria-label="Previous week"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square"><polyline points="15 18 9 12 15 6"/></svg></button>
+      <div>
         <div class="plan-week-big">WEEK <span id="pw-num">1</span></div>
         <div class="plan-week-phase" id="pw-phase">Foundation</div>
       </div>
-      <button class="plan-nav-btn" onclick="changePW(1)">›</button>
+      <button class="plan-nav-btn" onclick="changePW(1)" aria-label="Next week"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square"><polyline points="9 18 15 12 9 6"/></svg></button>
     </div>
-
     <div class="phase-row" id="plan-phase-pills" style="margin-bottom:8px"></div>
-
     <div id="plan-days"></div>
-
   </div>
 
-  <!-- ═══════════ PROGRESS ═══════════ -->
   <div id="screen-progress" class="screen">
-
     <div class="sec-hdr"><span class="sec-hdr-title">Streak</span><div class="sec-hdr-line"></div></div>
-
     <div class="streak-block">
+      <div style="margin-bottom:8px"><svg width="32" height="32" viewBox="0 0 24 24" fill="var(--ink)" stroke="none"><path d="M12 2C9 7 6 8.5 6 13a6 6 0 0012 0c0-3-1.5-5-3-6.5C14.5 8 14 10 12 10c0-3-1-6-0-8zM9 17c0-2 1.5-3 3-4 1.5 1 3 2 3 4a3 3 0 01-6 0z"/></svg></div>
       <div class="streak-number" id="prog-streak">0</div>
       <div class="streak-label">Day training streak</div>
       <div class="streak-best" id="prog-best">Best: 0 days</div>
     </div>
-
     <div class="sec-hdr" style="padding-top:14px"><span class="sec-hdr-title">Progress</span><div class="sec-hdr-line"></div></div>
-
     <div class="prog-row"><div class="prog-top"><span class="prog-label">Plan progress</span><span class="prog-val" id="pv-plan">0%</span></div><div class="prog-track"><div class="prog-fill" id="pf-plan" style="width:0%"></div></div></div>
     <div class="prog-row"><div class="prog-top"><span class="prog-label">Workouts logged</span><span class="prog-val" id="pv-log">0 / 144</span></div><div class="prog-track"><div class="prog-fill" id="pf-log" style="width:0%"></div></div></div>
     <div class="prog-row"><div class="prog-top"><span class="prog-label">Running sessions</span><span class="prog-val" id="pv-run">0</span></div><div class="prog-track"><div class="prog-fill" id="pf-run" style="width:0%"></div></div></div>
     <div class="prog-row"><div class="prog-top"><span class="prog-label">Station sessions</span><span class="prog-val" id="pv-stn">0</span></div><div class="prog-track"><div class="prog-fill" id="pf-stn" style="width:0%"></div></div></div>
     <div class="prog-row"><div class="prog-top"><span class="prog-label">Hybrid sessions</span><span class="prog-val" id="pv-hyb">0</span></div><div class="prog-track"><div class="prog-fill" id="pf-hyb" style="width:0%"></div></div></div>
-
     <div class="sec-hdr" style="padding-top:14px"><span class="sec-hdr-title">Last 28 days</span><div class="sec-hdr-line"></div></div>
-
     <div class="cal-grid" id="cal-grid"></div>
-
-    <div style="display:flex;gap:14px;padding:10px 20px;font-size:10px;color:var(--grey4);font-family:'Barlow Condensed',sans-serif;letter-spacing:0.5px">
+    <div style="display:flex;gap:14px;padding:10px 20px;font-size:10px;color:var(--ink5);font-family:var(--body);letter-spacing:0.5px">
       <span>■ Logged</span><span style="opacity:0.4">■ Missed</span>
     </div>
-
   </div>
 
-  <!-- ═══════════ NUTRITION ═══════════ -->
   <div id="screen-nutrition" class="screen">
-
     <div class="sec-hdr"><span class="sec-hdr-title">Daily targets</span><div class="sec-hdr-line"></div></div>
-
-    <div class="macro-row">
-      <div class="macro-box"><div class="macro-num">175</div><div class="macro-unit">g protein</div></div>
-      <div class="macro-box"><div class="macro-num">270</div><div class="macro-unit">g carbs</div></div>
-      <div class="macro-box"><div class="macro-num">70</div><div class="macro-unit">g fat</div></div>
-      <div class="macro-box"><div class="macro-num">2400</div><div class="macro-unit">kcal</div></div>
+    <div class="macro-row" id="macro-row">
+      <div class="macro-box"><div class="macro-num" id="m-protein">175</div><div class="macro-unit">g protein</div></div>
+      <div class="macro-box"><div class="macro-num" id="m-carbs">270</div><div class="macro-unit">g carbs</div></div>
+      <div class="macro-box"><div class="macro-num" id="m-fat">70</div><div class="macro-unit">g fat</div></div>
+      <div class="macro-box"><div class="macro-num" id="m-kcal">2400</div><div class="macro-unit">kcal</div></div>
     </div>
-
     <div class="sec-hdr" style="padding-top:14px"><span class="sec-hdr-title">Meal plan</span><div class="sec-hdr-line"></div></div>
-
     <div id="meal-list"></div>
-
     <div class="sec-hdr" style="padding-top:14px"><span class="sec-hdr-title">Rest day</span><div class="sec-hdr-line"></div></div>
-
-    <div style="padding: 0 20px 8px">
-      <div class="tip-row" style="padding:0;border:none;margin-bottom:10px">
-        <div class="tip-content">
-          <div class="tip-title">Drop carbs ~80g</div>
-          <div class="tip-desc">Skip post-workout snack. Reduce rice/roti. Keep protein at 170–180g — recovery happens on rest days.</div>
-        </div>
-      </div>
-      <div class="tip-row" style="padding:0;border:none;margin-bottom:10px">
-        <div class="tip-content">
-          <div class="tip-title">Hydration</div>
-          <div class="tip-desc">Min 3L daily. Add salt pinch on heavy training days. Race in Bangkok (~30°C): 4L+. Never wait to feel thirsty.</div>
-        </div>
-      </div>
-      <div class="tip-row" style="padding:0;border:none">
-        <div class="tip-content">
-          <div class="tip-title">Race morning</div>
-          <div class="tip-desc">2 eggs + 1 banana + black coffee, 90 min before gun. Gel or 3 dates at station 4–5 transition during race.</div>
-        </div>
-      </div>
+    <div style="padding:0 20px 8px">
+      <div class="tip-row" style="padding:0;border:none;margin-bottom:10px"><div class="tip-content"><div class="tip-title">Drop carbs ~80g</div><div class="tip-desc">Skip post-workout snack. Reduce rice/roti. Keep protein at 170–180g — recovery happens on rest days.</div></div></div>
+      <div class="tip-row" style="padding:0;border:none;margin-bottom:10px"><div class="tip-content"><div class="tip-title">Hydration</div><div class="tip-desc">Min 3L daily. Add salt pinch on heavy training days. Race in Bangkok (~30°C): 4L+. Never wait to feel thirsty.</div></div></div>
+      <div class="tip-row" style="padding:0;border:none"><div class="tip-content"><div class="tip-title">Race morning</div><div class="tip-desc">2 eggs + 1 banana + black coffee, 90 min before gun. Gel or 3 dates at station 4–5 transition during race.</div></div></div>
     </div>
-
   </div>
 
-  <!-- ═══════════ TIPS ═══════════ -->
   <div id="screen-tips" class="screen">
-
     <div class="sec-hdr"><span class="sec-hdr-title">Race format</span><div class="sec-hdr-line"></div></div>
-
     <div style="border-top:1px solid var(--border2)" id="station-list"></div>
-
     <div class="sec-hdr" style="padding-top:14px"><span class="sec-hdr-title">Your gaps</span><div class="sec-hdr-line"></div></div>
-
     <div id="gap-list"></div>
-
     <div class="sec-hdr" style="padding-top:14px"><span class="sec-hdr-title">Race strategy</span><div class="sec-hdr-line"></div></div>
-
     <div style="border-top:1px solid var(--border2)" id="tips-list"></div>
-
     <div style="height:16px"></div>
-
   </div>
 
 </div>
 
-<!-- Bottom Nav -->
 <nav id="bottom-nav">
   <button class="nav-btn active" onclick="showScreen('today',this)">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
@@ -942,8 +1142,6 @@ body {
 <div id="toast"></div>
 
 <script>
-// ═══ DATA ═══
-const RACE = new Date('2027-03-20T07:00:00');
 const TODAY = new Date();
 const DAY = 86400000;
 const TOTAL = 36;
@@ -960,67 +1158,78 @@ function getPhase(wk) {
   return PHASES[3];
 }
 
-function getSched(wk) {
+function getSched(wk, daysPerWeek) {
   const n = getPhase(wk).name;
+  if (daysPerWeek <= 3) {
+    if (n==='Foundation') return ['run','rest','strength','rest','station','rest','rest'];
+    if (n==='Build')      return ['run','rest','hybrid','rest','station','rest','rest'];
+    if (n==='Specific')   return ['run','rest','hybrid','station','rest','rest','rest'];
+    return ['run','rest','hybrid','rest','station','rest','rest'];
+  }
   if (n==='Foundation') return ['run','rest','strength','rest','station','rest','rest'];
   if (n==='Build')      return ['run','strength','rest','hybrid','rest','station','rest'];
   if (n==='Specific')   return ['run','station','rest','hybrid','strength','rest','hybrid'];
   return ['run','hybrid','rest','station','rest','rest','rest'];
 }
 
-function getWO(type, wk) {
+function getWO(type, wk, cfg) {
   const lvl = {Foundation:1,Build:2,Specific:3,Peak:4}[getPhase(wk).name];
+  const gym = cfg.gym || 'commercial';
+  const run = cfg.runLevel || 'decent';
+  const runPace = run==='strong' ? '5:30–5:45/km' : run==='beginner' ? '6:30–7:00/km' : '5:45–6:00/km';
+  const runTarget = run==='strong' ? 'sub 1:15' : run==='beginner' ? 'sub 2:00' : 'sub 1:30';
+
   const WOS = {
     run:{
-      title:'Running session', dur: lvl<3?'~40 min':'~55 min',
+      title:'Running session', dur:lvl<3?'~40 min':'~55 min',
       ex:[
-        {n:'Warm-up run', s:lvl===1?'15 min easy Z2 pace (conversational)':'8 min easy jog', t:'Nose breathing — if you can\'t talk, slow down'},
-        {n:'Main set', s:lvl===1?'20 min continuous Z2 @ 6:30–7:00/km':lvl===2?'5×1km @ 5:45/km, 90s rest':lvl===3?'8×1km @ race pace 5:45/km, 60s rest':'5×1km @ 5:30/km, 60s rest', t:lvl>=3?'Race pace — hold even when your legs beg you to stop':'Aerobic engine first, speed later'},
-        {n:'Cool down + stretch', s:'10 min walk, hip flexors, calves, quads', t:'Don\'t skip this — it\'s injury prevention'}
+        {n:'Warm-up run', s:lvl===1?'15 min easy Z2 (conversational)':'8 min easy jog', t:'Nose breathing — if you can\'t talk, slow down'},
+        {n:'Main set', s:lvl===1?`20 min Z2 @ ${runPace}`:lvl===2?`5×1km @ ${runPace}, 90s rest`:lvl===3?`8×1km @ ${runPace}, 60s rest`:`5×1km @ ${runPace}, 60s rest`, t:lvl>=3?`Race pace ${runPace} — hold even when your legs beg you to stop`:'Aerobic engine first, speed later'},
+        {n:'Cool down + stretch', s:'10 min walk, hip flexors, calves, quads', t:'Don\'t skip — injury prevention'}
       ],
-      footer: 'Your strongest asset. Build the engine, then sharpen it.'
+      footer:`Your target: ${runTarget}. Build the engine, then sharpen it.`
     },
     strength:{
       title:'Strength session', dur:'~45 min',
       ex:[
-        {n:'Pull-ups / assisted', s:lvl===1?'3×5 (use band if needed)':lvl===2?'4×6':'4×8', t:'Critical for SkiErg pull and sled pull. Start with band.'},
-        {n:'Dumbbell rows', s:lvl===1?'3×12 each arm @ 10kg':lvl===2?'4×10 @ 10kg':'4×12 @ 10kg', t:'Squeeze shoulder blade at the top of each rep'},
-        {n:'Push-ups', s:lvl===1?'3×10':lvl===2?'4×15':'4×20', t:'Core tight, no hip sag — control the descent'},
-        {n:'Overhead press', s:lvl===1?'3×10 @ 8kg':lvl===2?'3×10 @ 10kg':'4×10 at gym weights', t:'Wall balls are 100 overhead reps — train this movement'},
-        {n:'Plank hold', s:lvl===1?'3×30 sec':lvl===2?'3×45 sec':'3×60 sec', t:'Core stability carries you through the back half of the race'},
-        {n:'Dead bugs', s:'3×10 slow controlled reps', t:'Lower back protection for lunges and heavy carries'}
+        {n:'Pull-ups / assisted', s:lvl===1?'3×5 (use band if needed)':lvl===2?'4×6':'4×8', t:'Critical for SkiErg and sled pull. Start with band.'},
+        {n:'Dumbbell rows', s:lvl===1?'3×12 each arm @ 10kg':lvl===2?'4×10 @ 10kg':'4×12 @ 10kg', t:'Squeeze shoulder blade at top of each rep'},
+        {n:'Push-ups', s:lvl===1?'3×10':lvl===2?'4×15':'4×20', t:'Core tight, no hip sag'},
+        {n:'Overhead press', s:gym==='home'?`3×10 @ ${lvl===1?'8kg':'10kg'}`:`3×${lvl===1?10:12} at gym weights`, t:'Wall balls are 100 overhead reps — train this'},
+        {n:'Plank hold', s:lvl===1?'3×30 sec':lvl===2?'3×45 sec':'3×60 sec', t:'Core stability carries you through the back half'},
+        {n:'Dead bugs', s:'3×10 slow controlled reps', t:'Lower back protection for lunges and carries'}
       ],
-      footer:'Gym session. Form before load, always. Your upper body is your biggest gap.'
+      footer:'Form before load, always. Upper body is your biggest gap.'
     },
     station:{
       title:'Station practice', dur:'~50 min',
       ex:[
-        {n:'Goblet squat', s:lvl===1?'4×15 @ 10kg':lvl===2?'4×20 @ 10kg':'5×20 — go heavier at gym', t:'Simulates wall ball squat. Hip crease below knee, every rep.'},
-        {n:'Wall balls (gym)', s:lvl===1?'4×10 reps':lvl===2?'4×20 reps':lvl===3?'3×30 unbroken':'100 reps unbroken attempt', t:'At 6\'2", aim 9-foot target. Catch deep. No press-and-pause.'},
-        {n:'Walking lunges', s:lvl===1?'3×10 each leg @ 10kg':lvl===2?'3×12 @ 10kg':'4×15 — barbell at gym when ready', t:'Race = 20kg sandbag for 100m. Build lunging endurance.'},
-        {n:'Rowing machine 1000m', s:lvl===1?'Easy — just note your time':lvl===2?'3×1000m, target sub 5:00':'3×1000m, target sub 4:40', t:'Drive with legs first. Lean back. Then pull arms. Not the other way.'},
-        {n:'Farmers carry', s:lvl===1?'3×40m @ 2×10kg':lvl===2?'3×50m @ 2×10kg':'4×50m — heavier at gym', t:'Race = 2×24kg for 200m. Your grip will give out before your legs.'}
+        {n:'Goblet squat', s:lvl===1?'4×15 @ 10kg':lvl===2?'4×20 @ 10kg':'5×20 — go heavier', t:'Simulates wall ball. Hip crease below knee every rep.'},
+        {n:'Wall balls', s:gym==='home'?`4×${lvl===1?10:lvl===2?15:20} reps with any ball overhead`:`${lvl===1?'4×10':lvl===2?'4×20':lvl===3?'3×30 unbroken':'100 reps unbroken'}`, t:'Catch deep. No press-and-pause.'},
+        {n:'Walking lunges', s:lvl===1?'3×10 each leg @ 10kg':lvl===2?'3×12 @ 10kg':'4×15 — barbell when ready', t:'Race = 20kg sandbag for 100m.'},
+        {n:'Rowing machine 1000m', s:gym==='home'?'Substitute: 3 min step-ups with weight':lvl===1?'Easy — note your time':lvl===2?'3×1000m target sub 5:00':'3×1000m target sub 4:40', t:'Drive with legs first, then pull arms.'},
+        {n:'Farmers carry', s:lvl===1?'3×40m @ 2×10kg':lvl===2?'3×50m @ 2×10kg':'4×50m — heavier at gym', t:'Race = 2×24kg for 200m. Grip is your limiter.'}
       ],
-      footer:'This is your biggest gap. Every session here is time saved on race day.'
+      footer:'Biggest gap. Every session here is race time saved.'
     },
     hybrid:{
       title:'Hybrid / compromised run', dur:'~60 min',
       ex:[
-        {n:'Run 1km @ race pace', s:'5:45–6:00/km, no stopping', t:'Sets the tone. Discipline here = 10 minutes saved at the end.'},
+        {n:'Run 1km @ race pace', s:`${runPace}, no stopping`, t:'Discipline here = 10 min saved at the end.'},
         {n:'Station block A', s:lvl===2?'20 squats + 10 burpee broad jumps':lvl>=3?'30 wall balls + 20 burpees':'25 wall balls + 15 burpees', t:'Zero rest from run to station. This is the point.'},
-        {n:'Run 1km @ race pace', s:'5:45–6:00/km', t:'This is compromised running. Your legs will be heavy. Good.'},
-        {n:'Station block B', s:lvl===2?'20 lunges + 200m farmers carry':'20 lunges + 200m carry + 20 squat', t:'Keep moving. Walk don\'t stop. Stopping = death spiral.'},
-        {n:'Run 1km @ race pace', s:'5:45–6:00/km', t:'If you can hold pace here, you are race-ready.'},
+        {n:'Run 1km @ race pace', s:runPace, t:'Compromised running. Legs will be heavy. Good.'},
+        {n:'Station block B', s:lvl===2?'20 lunges + 200m farmers carry':'20 lunges + 200m carry + 20 squat', t:'Keep moving. Walk don\'t stop.'},
+        {n:'Run 1km @ race pace', s:runPace, t:'If you can hold pace here, you are race-ready.'},
         {n:'Station block C', s:lvl>=3?'1000m row + 20 wall balls':'Skip — phase 2+ only', t:'Last push. This is the back half of the race.'}
       ],
-      footer:'Most race-specific session in your entire plan. Do not skip these.'
+      footer:'Most race-specific session in the plan. Do not skip.'
     },
     rest:{
       title:'Rest + recovery', dur:'~30 min',
       ex:[
-        {n:'20 min easy walk', s:'Under 100 bpm heart rate. No effort.', t:'Recovery is when the training adaptation actually happens.'},
-        {n:'Foam rolling', s:'Quads, hamstrings, calves, thoracic spine — 10 min', t:'Buy a foam roller. Non-negotiable for 9 months of training.'},
-        {n:'Hip flexor mobility', s:'Pigeon pose, couch stretch, shoulder circles', t:'Lunges and carries will destroy your hip flexors. Stay ahead of it.'}
+        {n:'20 min easy walk', s:'Under 100 bpm. No effort.', t:'Recovery is when adaptation happens.'},
+        {n:'Foam rolling', s:'Quads, hamstrings, calves, T-spine — 10 min', t:'Non-negotiable for months of training.'},
+        {n:'Hip flexor mobility', s:'Pigeon pose, couch stretch, shoulder circles', t:'Lunges and carries destroy hip flexors fast.'}
       ],
       footer:'Do not turn rest days into training. Overtraining ends race goals.'
     }
@@ -1030,33 +1239,98 @@ function getWO(type, wk) {
 
 // ═══ STATE ═══
 let S = {};
-try { S = JSON.parse(localStorage.getItem('hyrox_v2')) || {}; } catch {}
+try { S = JSON.parse(localStorage.getItem('hyrox_v3')) || {}; } catch {}
 if (!S.logged) S.logged = {};
 if (!S.best) S.best = 0;
-function save() { localStorage.setItem('hyrox_v2', JSON.stringify(S)); }
+if (!S.cfg) S.cfg = {};
 
+function save() { localStorage.setItem('hyrox_v3', JSON.stringify(S)); }
 function dkey(d) { return d.toISOString().split('T')[0]; }
 const todayKey = dkey(TODAY);
-const daysLeft = Math.round((RACE-TODAY)/DAY);
-const weeksLeft = Math.floor(daysLeft/7);
-const curWk = Math.max(1, Math.min(TOTAL, TOTAL - weeksLeft + 1));
-const curPh = getPhase(curWk);
-const curPhWk = curWk - curPh.w[0] + 1;
+
+function getRaceDate() {
+  return S.cfg.raceDate ? new Date(S.cfg.raceDate+'T07:00:00') : new Date('2027-03-20T07:00:00');
+}
+
+function getComputedVars() {
+  const RACE = getRaceDate();
+  const daysLeft = Math.max(0, Math.round((RACE - TODAY) / DAY));
+  const weeksLeft = Math.floor(daysLeft / 7);
+  const curWk = Math.max(1, Math.min(TOTAL, TOTAL - weeksLeft + 1));
+  const curPh = getPhase(curWk);
+  const curPhWk = curWk - curPh.w[0] + 1;
+  return { daysLeft, weeksLeft, curWk, curPh, curPhWk };
+}
 
 function recalcStreak() {
   let streak=0, d=new Date(TODAY);
   if (!S.logged[dkey(d)]) d.setDate(d.getDate()-1);
   while(S.logged[dkey(d)]) { streak++; d.setDate(d.getDate()-1); }
   S.streak = streak;
-  if (streak > S.best) S.best = streak;
+  if (streak > (S.best||0)) S.best = streak;
 }
 
-// ═══ COUNTDOWN ═══
+// ═══ NUTRITION CALC ═══
+function calcNutrition(weightKg) {
+  const w = weightKg || 84;
+  const protein = Math.round(w * 2.1);
+  const kcal = Math.round(w * 28.5);
+  const fat = Math.round(w * 0.85);
+  const carbs = Math.round((kcal - protein*4 - fat*9) / 4);
+  return { protein, carbs, fat, kcal };
+}
+
+function getMeals(diet) {
+  const isVeg = diet === 'veg';
+  const isVegan = diet === 'vegan';
+  return [
+    {name:'Breakfast', kcal:630, items: isVegan
+      ? [{n:'200g tofu scramble',k:160},{n:'80g oats',k:290},{n:'1 banana',k:90},{n:'Black coffee',k:5}]
+      : isVeg
+      ? [{n:'3 whole eggs scrambled',k:210},{n:'80g rolled oats',k:290},{n:'1 banana',k:90},{n:'Black coffee',k:5}]
+      : [{n:'3 whole eggs scrambled',k:210},{n:'2 egg whites',k:35},{n:'80g rolled oats',k:290},{n:'1 banana',k:90},{n:'Black coffee',k:5}]
+    },
+    {name:'Pre-workout snack', kcal:300, items: isVegan
+      ? [{n:'2 tbsp peanut butter',k:190},{n:'1 banana',k:90},{n:'3 dates',k:70}]
+      : [{n:isVeg?'2 boiled eggs':'2 boiled eggs',k:140},{n:'1 banana',k:90},{n:'3 dates',k:70}]
+    },
+    {name:'Lunch', kcal:815, items: isVegan
+      ? [{n:'200g tofu / tempeh',k:240},{n:'150g basmati rice',k:195},{n:'Veggies + 1 tsp oil',k:120},{n:'150g lentils',k:170}]
+      : isVeg
+      ? [{n:'200g paneer',k:340},{n:'150g basmati rice',k:195},{n:'Veggies + 1 tsp oil',k:120},{n:'150g dal',k:170}]
+      : [{n:'200g chicken breast grilled',k:330},{n:'150g basmati rice',k:195},{n:'Veggies + 1 tsp oil',k:120},{n:'150g dal',k:170}]
+    },
+    {name:'Post-workout (within 30 min)', kcal:550, items: isVegan
+      ? [{n:'Protein shake (plant-based)',k:150},{n:'2 roti or 100g bread',k:250},{n:'1 banana',k:90}]
+      : isVeg
+      ? [{n:'3 boiled eggs',k:210},{n:'2 roti or 100g bread',k:250},{n:'1 banana',k:90}]
+      : [{n:'3 boiled eggs',k:210},{n:'2 roti or 100g bread',k:250},{n:'1 banana or mango',k:90}]
+    },
+    {name:'Dinner', kcal:700, items: isVegan
+      ? [{n:'180g tofu / chickpeas',k:200},{n:'2 chapati or 100g rice',k:250},{n:'Sabzi + coconut curd',k:200}]
+      : isVeg
+      ? [{n:'180g paneer or eggs (3)',k:310},{n:'2 chapati or 100g rice',k:250},{n:'Sabzi + 1 cup curd',k:150}]
+      : [{n:'180g chicken grilled',k:300},{n:'2 chapati or 100g rice',k:250},{n:'Sabzi + 1 cup curd',k:150}]
+    },
+    {name:'Before bed', kcal:185, items: isVegan
+      ? [{n:'Casein substitute: 30g hemp seeds',k:170},{n:'Handful almonds',k:70}]
+      : [{n:isVeg?'2 egg whites':'2 egg whites',k:35},{n:'150g curd',k:80},{n:'8–10 almonds',k:70}]
+    }
+  ];
+}
+
+// ═══ RENDER COUNTDOWN ═══
 function initCountdown() {
+  const {daysLeft, weeksLeft, curWk, curPhWk} = getComputedVars();
   document.getElementById('cd-w').textContent = weeksLeft;
   document.getElementById('cd-d').textContent = daysLeft % 7;
   document.getElementById('cd-p').textContent = curPhWk;
   document.getElementById('cd-tot').textContent = curWk;
+  const ph = getPhase(curWk);
+  document.getElementById('header-subtitle').textContent =
+    (S.cfg.name ? S.cfg.name + ' · ' : '') +
+    (S.cfg.raceDate ? new Date(S.cfg.raceDate).toLocaleDateString('en',{month:'short',year:'numeric'}) : 'Bangkok 2027') +
+    ' · ' + (S.cfg.target || 'Sub 1:30');
 }
 
 // ═══ PHASE PILLS ═══
@@ -1080,8 +1354,9 @@ function getMonStart() {
 }
 
 function initWeekStrip() {
+  const {curWk} = getComputedVars();
   const ms = getMonStart();
-  const sched = getSched(curWk);
+  const sched = getSched(curWk, S.cfg.daysPerWeek||4);
   const todayDow = (TODAY.getDay()+6)%7;
   let doneCount = 0;
   const el = document.getElementById('week-strip');
@@ -1104,15 +1379,14 @@ function initWeekStrip() {
 // ═══ TODAY CARD ═══
 function renderTodayCard() {
   recalcStreak();
+  const {curWk} = getComputedVars();
   const todayDow = (TODAY.getDay()+6)%7;
-  const type = getSched(curWk)[todayDow];
-  const wo = getWO(type, curWk);
+  const type = getSched(curWk, S.cfg.daysPerWeek||4)[todayDow];
+  const wo = getWO(type, curWk, S.cfg);
   const done = !!S.logged[todayKey];
-
-  document.getElementById('header-streak').textContent = '🔥 '+S.streak;
+  document.getElementById('streak-num').textContent = S.streak;
   document.getElementById('st-streak').textContent = S.streak;
   document.getElementById('st-total').textContent = Object.keys(S.logged).length;
-
   const exHTML = wo.ex.map((e,i) => `
     <div class="ex-item">
       <div class="ex-idx">0${i+1}</div>
@@ -1122,7 +1396,6 @@ function renderTodayCard() {
         ${e.t?`<div class="ex-tip">${e.t}</div>`:''}
       </div>
     </div>`).join('');
-
   document.getElementById('today-card').innerHTML = `
     <div class="workout-block">
       <div class="workout-block-header">
@@ -1130,55 +1403,71 @@ function renderTodayCard() {
           <div class="wb-type-bar"></div>
           <div>
             <div class="wb-title">${wo.title}</div>
-            <div class="wb-sub">${wo.dur} &nbsp;·&nbsp; Week ${curWk} of ${TOTAL}</div>
+            <div class="wb-sub">${wo.dur} · Week ${curWk} of ${TOTAL}</div>
           </div>
         </div>
         <div class="wb-done-pill ${done?'show':''}">DONE</div>
       </div>
       <div class="ex-list">${exHTML}</div>
-      <div style="padding:4px 16px 8px;font-size:11px;color:var(--grey4);border-top:1px solid var(--border2);margin-top:4px;padding-top:10px">${wo.footer}</div>
-      <button class="log-btn ${done?'logged':''}" id="log-btn" onclick="logWO('${type}')">
+      <div style="padding:10px 16px 8px;font-size:12px;color:var(--ink4);border-top:1px solid var(--border2)">${wo.footer}</div>
+      <button class="log-btn ${done?'logged':''}" onclick="logWO('${type}')" id="log-action-btn">
         ${done?'✓ LOGGED':'LOG WORKOUT COMPLETE'}
       </button>
+      ${done ? '<div style="text-align:center;padding:0 16px 12px"><button class="btn-bare" onclick="undoLog()" style="color:#c0392b;font-size:11px">↩ Undo log</button></div>' : ''}
     </div>`;
+}
+
+function undoLog() {
+  if (!S.logged[todayKey]) { showToast('NOTHING TO UNDO'); return; }
+  showConfirm('Undo today\'s log?', 'This workout will be unmarked as done.', 'UNDO', () => {
+    delete S.logged[todayKey];
+    recalcStreak();
+    save();
+    renderTodayCard();
+    initWeekStrip();
+    showToast('LOG REMOVED');
+  });
 }
 
 function logWO(type) {
   if (S.logged[todayKey]) { showToast('ALREADY LOGGED TODAY'); return; }
+  const {curWk} = getComputedVars();
   S.logged[todayKey] = {type, week:curWk};
   recalcStreak();
   save();
-  showToast('LOGGED — STREAK: '+S.streak+' DAYS 🔥');
+  showToast('LOGGED — STREAK: '+S.streak+' DAYS');
   renderTodayCard();
   initWeekStrip();
 }
 
 // ═══ PLAN ═══
-let planWk = curWk;
+let planWk = null;
 function renderPlan() {
+  const {curWk} = getComputedVars();
+  if (!planWk) planWk = curWk;
   const ph = getPhase(planWk);
   document.getElementById('pw-num').textContent = planWk;
   document.getElementById('pw-phase').textContent = ph.name+' phase · Week '+planWk+'/'+TOTAL;
   renderPhasePills('plan-phase-pills', planWk);
-  const sched = getSched(planWk);
+  const sched = getSched(planWk, S.cfg.daysPerWeek||4);
   const c = document.getElementById('plan-days');
   c.innerHTML = '';
   DNAMES.forEach((dn,i) => {
     const type = sched[i];
-    const wo = getWO(type, planWk);
+    const wo = getWO(type, planWk, S.cfg);
     const row = document.createElement('div');
     row.className = 'plan-day-row';
     const exLines = wo.ex.slice(0,4).map(e =>
       `<div class="plan-ex-line"><strong>${e.n}:</strong> ${e.s}</div>`
-    ).join('') + (wo.ex.length>4?`<div class="plan-ex-line" style="color:var(--grey5)">+${wo.ex.length-4} more</div>`:'');
+    ).join('') + (wo.ex.length>4?`<div class="plan-ex-line" style="color:var(--ink5)">+${wo.ex.length-4} more</div>`:'');
     row.innerHTML = `
       <div class="plan-day-toggle" onclick="togglePD(this)">
         <span class="plan-day-label">${dn}</span>
-        <span class="plan-day-dot" style="background:${type==='rest'?'var(--grey5)':'var(--white)'}"></span>
+        <span class="plan-day-dot" style="background:${type==='rest'?'var(--ink6)':'var(--ink)'}"></span>
         <span class="plan-day-title">${wo.title}</span>
-        <span class="plan-day-chevron">▼</span>
+        <span class="plan-day-chevron"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square"><polyline points="6 9 12 15 18 9"/></svg></span>
       </div>
-      <div class="plan-day-body">${exLines}<div style="font-size:11px;color:var(--grey4);margin-top:8px;border-top:1px solid var(--border2);padding-top:8px">${wo.footer}</div></div>`;
+      <div class="plan-day-body">${exLines}<div style="font-size:12px;color:var(--ink4);margin-top:8px;border-top:1px solid var(--border2);padding-top:8px">${wo.footer}</div></div>`;
     c.appendChild(row);
   });
 }
@@ -1189,6 +1478,8 @@ function togglePD(h) {
   h.querySelector('.plan-day-chevron').classList.toggle('open');
 }
 function changePW(d) {
+  const {curWk} = getComputedVars();
+  if (!planWk) planWk = curWk;
   planWk = Math.max(1,Math.min(TOTAL,planWk+d));
   renderPlan();
 }
@@ -1196,8 +1487,9 @@ function changePW(d) {
 // ═══ PROGRESS ═══
 function initProgress() {
   recalcStreak();
+  const {curWk} = getComputedVars();
   document.getElementById('prog-streak').textContent = S.streak;
-  document.getElementById('prog-best').textContent = 'Best: '+S.best+' days';
+  document.getElementById('prog-best').textContent = 'Best: '+(S.best||0)+' days';
   const all = Object.keys(S.logged);
   const total = all.length;
   const pctPlan = Math.round((curWk/TOTAL)*100);
@@ -1214,7 +1506,6 @@ function initProgress() {
   document.getElementById('pf-stn').style.width = Math.min(100,Math.round(stn/36*100))+'%';
   document.getElementById('pv-hyb').textContent = hyb+' / 30';
   document.getElementById('pf-hyb').style.width = Math.min(100,Math.round(hyb/30*100))+'%';
-  // 28-day calendar
   const grid = document.getElementById('cal-grid');
   grid.innerHTML = '';
   for (let i=27;i>=0;i--) {
@@ -1228,20 +1519,20 @@ function initProgress() {
 }
 
 // ═══ NUTRITION ═══
-const MEALS = [
-  {name:'Breakfast',kcal:630,items:[{n:'3 whole eggs scrambled',k:210},{n:'2 egg whites',k:35},{n:'80g rolled oats',k:290},{n:'1 banana',k:90},{n:'Black coffee',k:5}]},
-  {name:'Pre-workout snack',kcal:300,items:[{n:'2 boiled eggs',k:140},{n:'1 banana',k:90},{n:'3 dates',k:70}]},
-  {name:'Lunch',kcal:815,items:[{n:'200g chicken breast grilled',k:330},{n:'150g basmati rice cooked',k:195},{n:'Veggies + 1 tsp olive oil',k:120},{n:'150g dal / lentils',k:170}]},
-  {name:'Post-workout (within 30 min)',kcal:550,items:[{n:'3 boiled eggs',k:210},{n:'2 roti or 100g bread',k:250},{n:'1 banana or mango',k:90}]},
-  {name:'Dinner',kcal:700,items:[{n:'180g chicken grilled',k:300},{n:'2 chapati or 100g rice',k:250},{n:'Sabzi + 1 cup curd',k:150}]},
-  {name:'Before bed',kcal:185,items:[{n:'2 egg whites',k:35},{n:'150g curd',k:80},{n:'8–10 almonds',k:70}]}
-];
 function initNutrition() {
-  document.getElementById('meal-list').innerHTML = MEALS.map(m=>`
+  const w = parseInt(S.cfg.weight) || 84;
+  const diet = S.cfg.diet || 'nonveg';
+  const n = calcNutrition(w);
+  document.getElementById('m-protein').textContent = n.protein;
+  document.getElementById('m-carbs').textContent = n.carbs;
+  document.getElementById('m-fat').textContent = n.fat;
+  document.getElementById('m-kcal').textContent = n.kcal;
+  const meals = getMeals(diet);
+  document.getElementById('meal-list').innerHTML = meals.map(m=>`
     <div class="meal-row">
       <div class="meal-toggle" onclick="toggleMeal(this)">
         <div class="meal-title">${m.name}</div>
-        <div class="meal-kcal">${m.kcal} kcal ▼</div>
+        <div class="meal-kcal" style="display:flex;align-items:center;gap:6px">${m.kcal} kcal <svg class="meal-chev" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square"><polyline points="6 9 12 15 18 9"/></svg></div>
       </div>
       <div class="meal-body">${m.items.map(it=>`<div class="meal-food-row"><span>${it.n}</span><span class="meal-food-k">${it.k}</span></div>`).join('')}</div>
     </div>`).join('');
@@ -1249,7 +1540,7 @@ function initNutrition() {
 function toggleMeal(h) {
   h.nextElementSibling.classList.toggle('open');
   const k=h.querySelector('.meal-kcal');
-  k.textContent=k.textContent.includes('▼')?k.textContent.replace('▼','▲'):k.textContent.replace('▲','▼');
+  const chev=h.querySelector('.meal-chev'); if(chev) chev.style.transform=h.nextElementSibling.classList.contains('open')?'rotate(180deg)':'';
 }
 
 // ═══ TIPS ═══
@@ -1261,7 +1552,7 @@ const STATIONS=[
   {n:5,name:'Rowing',detail:'1000m',target:'Target < 4:30'},
   {n:6,name:'Farmers carry',detail:'2×24kg · 200m',target:'Target < 3:00'},
   {n:7,name:'Sandbag lunges',detail:'20kg · 100m',target:'Target < 5:00'},
-  {n:8,name:'Wall balls',detail:'6kg × 100 reps · 9ft target',target:'Target < 7:00 — your critical station'}
+  {n:8,name:'Wall balls',detail:'6kg × 100 reps · 9ft target',target:'Target < 7:00 — critical station'}
 ];
 const GAPS=[
   {name:'Running base',pct:70,status:'STRONG'},
@@ -1274,12 +1565,12 @@ const GAPS=[
   {name:'Burpee BJ',pct:45,status:'MODERATE'}
 ];
 const TIPS=[
-  {title:'Run at 5:45–6:00/km',desc:'Your 5K pace is ~6:00/km. Hold exactly that for all 8 runs. That\'s ~48 min of running, leaving ~42 min across 8 stations for sub 1:30. Do the math and stick to it.'},
-  {title:'Do NOT go fast on run 1',desc:'30 sec/km too fast early = 5+ min lost by km 6. The most common HYROX mistake. Wear a watch. Commit to pace from the gun — even when you feel great.'},
-  {title:'Know your station targets',desc:'Wall balls: 7 min. SkiErg + Row: 5 min each. Sled push/pull: 4–5 min each. Farmers carry: 3 min. Burpees: 5 min. Total stations target: ~42 min.'},
-  {title:'Transitions are free time',desc:'16 transitions × 20 sec each = 5+ minutes you leave on the table. Move with purpose. No socialising. No standing still. Know the venue layout.'},
-  {title:'Bangkok is 30°C and humid',desc:'Take a gel or 3 dates at station 4–5. Drink at every hydration station. Start hydrating 48h before race. Never wait to feel thirsty — by then you\'re already behind.'},
-  {title:'Wall balls = 2–3 min of free time',desc:'At 6\'2", 100 reps unbroken with a 6kg ball is the goal. Breaking at 50 costs 90+ seconds in rest. Train 100 unbroken reps in the final 8 weeks. This is your single biggest time saver.'}
+  {title:'Run at your target pace',desc:'Know your km pace for sub 1:30 (5:45–6:00/km). Lock it in from gun. Going 30 sec/km too fast early costs 5+ min by km 6.'},
+  {title:'Do NOT go fast on run 1',desc:'The single most common HYROX mistake. Wear a watch. Commit to pace even when you feel great.'},
+  {title:'Know your station targets',desc:'Wall balls: 7 min. SkiErg + Row: 5 min each. Sled push/pull: 4–5 min each. Farmers carry: 3 min. Burpees: 5 min.'},
+  {title:'Transitions are free time',desc:'16 transitions × 20 sec = 5+ min. Move with purpose. No standing still. Know the venue layout before race day.'},
+  {title:'Bangkok is 30°C and humid',desc:'Gel or 3 dates at station 4–5. Drink at every hydration point. Start hydrating 48h before race.'},
+  {title:'Wall balls = biggest time saver',desc:'100 reps unbroken with 6kg is the goal. Breaking at 50 costs 90+ seconds. Train unbroken sets in the final 8 weeks.'}
 ];
 function initTips() {
   document.getElementById('station-list').innerHTML = STATIONS.map(s=>`
@@ -1295,7 +1586,7 @@ function initTips() {
     <div class="gap-row">
       <div class="gap-top">
         <span class="gap-name">${g.name}</span>
-        <span class="gap-status" style="color:${g.pct<20?'var(--white)':g.pct<40?'var(--grey2)':'var(--grey3)'}">${g.status}</span>
+        <span class="gap-status" style="color:${g.pct<20?'var(--ink)':g.pct<40?'var(--ink3)':'var(--ink4)'}">${g.status}</span>
       </div>
       <div class="gap-track"><div class="gap-fill" style="width:${g.pct}%"></div></div>
     </div>`).join('');
@@ -1309,6 +1600,99 @@ function initTips() {
     </div>`).join('');
 }
 
+// ═══ ONBOARDING ═══
+function pickPill(groupId, val) {
+  document.querySelectorAll('#'+groupId+' .ob-pill').forEach(p => {
+    p.classList.toggle('active', p.dataset.val === val);
+  });
+}
+document.querySelectorAll('.ob-pill-row').forEach(row => {
+  row.querySelectorAll('.ob-pill').forEach(pill => {
+    pill.addEventListener('click', () => pickPill(row.id, pill.dataset.val));
+  });
+});
+
+function getPillVal(groupId) {
+  const active = document.querySelector('#'+groupId+' .ob-pill.active');
+  return active ? active.dataset.val : null;
+}
+
+function saveOnboarding() {
+  const name = document.getElementById('ob-name').value.trim();
+  const date = document.getElementById('ob-date').value;
+  const weight = document.getElementById('ob-weight').value;
+  if (!name) { showToast('ENTER YOUR NAME'); return; }
+  S.cfg = {
+    name, raceDate: date,
+    target: ({sub130:'Sub 1:30',sub145:'Sub 1:45',sub200:'Sub 2:00',finish:'Just finish'})[getPillVal('ob-target')] || 'Sub 1:30',
+    daysPerWeek: parseInt(getPillVal('ob-days')) || 4,
+    gym: getPillVal('ob-gym') || 'commercial',
+    runLevel: getPillVal('ob-run') || 'decent',
+    weight: parseInt(weight) || 84,
+    diet: getPillVal('ob-diet') || 'nonveg'
+  };
+  S.onboarded = true;
+  save();
+  document.getElementById('onboarding').style.display = 'none';
+  initApp();
+  showToast('WELCOME ' + name.toUpperCase() + '!');
+}
+
+// ═══ SETTINGS ═══
+function openSettings() {
+  const cfg = S.cfg || {};
+  document.getElementById('cfg-name').value = cfg.name || '';
+  document.getElementById('cfg-date').value = cfg.raceDate || '2027-03-20';
+  document.getElementById('cfg-weight').value = cfg.weight || 84;
+  ['cfg-target','cfg-days','cfg-gym','cfg-run','cfg-diet'].forEach(id => {
+    const key = {
+      'cfg-target': ({' Sub 1:30':'sub130','Sub 1:45':'sub145','Sub 2:00':'sub200','Just finish':'finish'})[cfg.target] || 'sub130',
+      'cfg-days': String(cfg.daysPerWeek||4),
+      'cfg-gym': cfg.gym||'commercial',
+      'cfg-run': cfg.runLevel||'decent',
+      'cfg-diet': cfg.diet||'nonveg'
+    }[id];
+    document.querySelectorAll('#'+id+' .ob-pill').forEach(p => p.classList.toggle('active', p.dataset.val===key));
+  });
+  document.getElementById('settings-panel').style.display = 'block';
+}
+
+function closeSettings() {
+  document.getElementById('settings-panel').style.display = 'none';
+}
+
+function saveSettings() {
+  const name = document.getElementById('cfg-name').value.trim();
+  if (!name) { showToast('ENTER YOUR NAME'); return; }
+  const targetMap = {sub130:'Sub 1:30',sub145:'Sub 1:45',sub200:'Sub 2:00',finish:'Just finish'};
+  S.cfg = {
+    name,
+    raceDate: document.getElementById('cfg-date').value,
+    target: targetMap[getPillVal('cfg-target')] || S.cfg.target || 'Sub 1:30',
+    daysPerWeek: parseInt(getPillVal('cfg-days')) || S.cfg.daysPerWeek || 4,
+    gym: getPillVal('cfg-gym') || S.cfg.gym || 'commercial',
+    runLevel: getPillVal('cfg-run') || S.cfg.runLevel || 'decent',
+    weight: parseInt(document.getElementById('cfg-weight').value) || S.cfg.weight || 84,
+    diet: getPillVal('cfg-diet') || S.cfg.diet || 'nonveg'
+  };
+  S.onboarded = true;
+  save();
+  closeSettings();
+  planWk = null;
+  initApp();
+  showToast('SETTINGS SAVED');
+}
+
+function resetData() {
+  showConfirm('Reset all progress?', 'Workouts and streak will be deleted. Settings stay.', 'RESET', () => {
+    S.logged = {}; S.streak = 0; S.best = 0;
+    save();
+    closeSettings();
+    initApp();
+    showToast('PROGRESS RESET');
+  }, true);
+}
+
 // ═══ NAV ═══
 function showScreen(name, btn) {
   document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
@@ -1318,6 +1702,25 @@ function showScreen(name, btn) {
   document.getElementById('app').scrollTo(0,0);
   if (name==='progress') initProgress();
   if (name==='plan') renderPlan();
+}
+
+// ═══ CONFIRM MODAL ═══
+let _confirmCb = null;
+function showConfirm(title, desc, okLabel, cb, isDanger=false) {
+  _confirmCb = cb;
+  document.getElementById('confirm-title').textContent = title;
+  document.getElementById('confirm-desc').textContent = desc;
+  const okBtn = document.getElementById('confirm-ok');
+  okBtn.textContent = okLabel;
+  okBtn.style.background = isDanger ? '#c0392b' : 'var(--ink)';
+  okBtn.style.color = 'var(--bg)';
+  okBtn.onclick = () => { closeConfirm(); if(_confirmCb) _confirmCb(); };
+  const modal = document.getElementById('confirm-modal');
+  modal.style.display = 'flex';
+}
+function closeConfirm() {
+  document.getElementById('confirm-modal').style.display = 'none';
+  _confirmCb = null;
 }
 
 // ═══ TOAST ═══
@@ -1330,14 +1733,126 @@ function showToast(msg) {
 // ═══ SERVICE WORKER ═══
 if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(()=>{});
 
-// ═══ INIT ═══
-recalcStreak();
-initCountdown();
-renderPhasePills('phase-pills', curWk);
-initWeekStrip();
-renderTodayCard();
-initNutrition();
-initTips();
+// ═══ INIT APP ═══
+function initApp() {
+  initCountdown();
+  renderPhasePills('phase-pills', getComputedVars().curWk);
+  initWeekStrip();
+  renderTodayCard();
+  initNutrition();
+  initTips();
+}
+
+// ═══ FIREBASE ═══
+const FB_CFG = {
+  apiKey: "AIzaSyCvDr4-XS0WKYZ_RFyZZjxp78ssSOSAnxM",
+  authDomain: "hyrox-trainer-b6a7f.firebaseapp.com",
+  projectId: "hyrox-trainer-b6a7f",
+  storageBucket: "hyrox-trainer-b6a7f.firebasestorage.app",
+  messagingSenderId: "293686404160",
+  appId: "1:293686404160:web:dbdc39270fef0bd0872ba5"
+};
+
+let fbAuth, fbDb, fbUser = null;
+
+function initFirebase() {
+  firebase.initializeApp(FB_CFG);
+  fbAuth = firebase.auth();
+  fbDb   = firebase.firestore();
+
+  fbAuth.onAuthStateChanged(async user => {
+    fbUser = user;
+    if (user) {
+      showAuthState(user);
+      await loadFromCloud();
+      hideLoginScreen();
+      recalcStreak();
+      if (!S.onboarded) {
+        document.getElementById('onboarding').style.display = 'block';
+      } else {
+        initApp();
+      }
+    } else {
+      showLoginScreen();
+    }
+  });
+
+  document.getElementById('btn-google-login').addEventListener('click', async () => {
+    try {
+      const provider = new firebase.auth.GoogleAuthProvider();
+      await fbAuth.signInWithPopup(provider);
+    } catch(e) {
+      if (e.code !== 'auth/popup-closed-by-user') showToast('SIGN IN FAILED');
+    }
+  });
+
+  document.getElementById('btn-signout').addEventListener('click', async () => {
+    await fbAuth.signOut();
+    S = { logged:{}, best:0, cfg:{} };
+    showLoginScreen();
+  });
+}
+
+async function loadFromCloud() {
+  try {
+    const snap = await fbDb.collection('users').doc(fbUser.uid).get();
+    if (snap.exists) {
+      const data = snap.data();
+      S = {
+        logged: data.logged || {},
+        best: data.best || 0,
+        cfg: data.cfg || {},
+        onboarded: data.onboarded || false,
+        streak: data.streak || 0
+      };
+    }
+  } catch(e) { console.warn('load failed', e); }
+}
+
+async function saveToCloud() {
+  if (!fbUser) return;
+  try {
+    await fbDb.collection('users').doc(fbUser.uid).set({
+      logged: S.logged,
+      best: S.best || 0,
+      cfg: S.cfg,
+      onboarded: S.onboarded || false,
+      streak: S.streak || 0,
+      updatedAt: new Date().toISOString()
+    });
+  } catch(e) { console.warn('save failed', e); }
+}
+
+const _origSave = save;
+function save() {
+  localStorage.setItem('hyrox_v3', JSON.stringify(S));
+  saveToCloud();
+}
+
+function showAuthState(user) {
+  document.getElementById('user-avatar').src = user.photoURL || '';
+  document.getElementById('user-avatar').style.display = 'block';
+  document.getElementById('btn-signout').style.display = 'flex';
+  document.getElementById('header-streak').style.display = 'flex';
+}
+
+function showLoginScreen() {
+  document.getElementById('login-screen').style.display = 'flex';
+  document.getElementById('user-avatar').style.display = 'none';
+  document.getElementById('btn-signout').style.display = 'none';
+  document.getElementById('header-streak').style.display = 'none';
+}
+
+function hideLoginScreen() {
+  document.getElementById('login-screen').style.display = 'none';
+}
+
+// ═══ BOOT ═══
+initFirebase();
+</script>
+</body>
+</html>
+
 </script>
 </body>
 </html>
